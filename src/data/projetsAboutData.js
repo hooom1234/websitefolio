@@ -22,7 +22,7 @@ export const proyectos = [
     imagen: "https://res.cloudinary.com/dg0uswwo4/image/upload/f_auto/v1765027283/420637537_2106476606417749_4370207783311886012_n_bbobw6.jpg",
     tecnologias: ["Arduino", "PictoBlox", "Machine-Learning"],
     demo: "/projects/toilet",
-    codigo: "https://github.com/Lautaro-R-collins/Back-express-todo.git",
+    codigo: "https://drive.google.com/file/d/1Xb4uEkPX2m_bfyx7Fv-8MO4PPKOc-N7r/view?usp=sharing",
   },
   {
     titulo: "Timless of Lampang",
