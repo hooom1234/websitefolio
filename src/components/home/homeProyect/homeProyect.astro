@@ -1,6 +1,10 @@
 ---
 import HomeProjectCard from "./homeProyectCard.astro";
-import { proyectos } from "../../../data/projetsAboutData.js";
+import { proyectosEN, proyectosTH } from "../../../data/projetsAboutData.js";
+import { translations } from "../../../data/translations.js";
+
+const currentLocale = Astro.currentLocale || "en";
+const proyectos = currentLocale === "th" ? proyectosTH : proyectosEN;
 ---
 
 <section id="projects-section" class="py-20 relative overflow-hidden bg-[#0b1121]">
@@ -12,10 +16,10 @@ import { proyectos } from "../../../data/projetsAboutData.js";
   <div class="container mx-auto px-4 relative z-10">
     <div class="text-center mb-16 space-y-4 opacity-0 translate-y-8 transition-all duration-700 reveal-on-scroll">
       <h2 class="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white via-sky-200 to-slate-400 drop-shadow-sm inline-block tracking-tight">
-        Projects & Activities
+        {translations[currentLocale]["projects.title"]}
       </h2>
       <p class="text-slate-400 max-w-2xl mx-auto text-sm md:text-base">
-        ผลงานที่เกิดจากความอยากรู้อยากเห็น และความตั้งใจที่จะพัฒนาตัวเอง
+        {translations[currentLocale]["projects.subtitle"]}
       </p>
       <div class="w-24 h-1 bg-gradient-to-r from-transparent via-sky-500 to-transparent mx-auto rounded-full opacity-70"></div>
     </div>
@@ -51,7 +55,7 @@ import { proyectos } from "../../../data/projetsAboutData.js";
         <span
           class="relative flex items-center gap-2 px-6 py-2 transition-all duration-200 bg-[#0b1121] rounded-full group-hover:bg-slate-900"
         >
-          Other Projects In Github
+          {translations[currentLocale]["projects.github"]}
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-sky-400 group-hover:translate-x-1 transition-transform">
             <path d="M5 12h14"></path>
             <path d="m12 5 7 7-7 7"></path>
@@ -104,11 +108,9 @@ import { proyectos } from "../../../data/projetsAboutData.js";
       }
 
       function draw() {
-          // ปรับสีพื้นหลัง Fade ให้ตรงกับ bg-[#0b1121] (rgb(11, 17, 33))
           ctx.fillStyle = 'rgba(11, 17, 33, 0.1)'; 
           ctx.fillRect(0, 0, width, height);
 
-          // ปรับสีตัวอักษรเป็นสีฟ้า (Sky-400/500)
           ctx.fillStyle = '#38bdf8'; 
           ctx.font = `${fontSize}px monospace`;
 
@@ -119,7 +121,6 @@ import { proyectos } from "../../../data/projetsAboutData.js";
               if (drops[i] * fontSize > height && Math.random() > 0.985) {
                   drops[i] = 0;
               }
-              // ความเร็วช้าๆ (Slow)
               drops[i] += 0.10; 
           }
           requestAnimationFrame(draw);

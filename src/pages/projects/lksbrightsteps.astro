@@ -1,7 +1,11 @@
 ---
-// src/pages/lksbrightsteps.astro
+// src/pages/projects/lksbrightsteps.astro
 import Layout from "../../layouts/Layout.astro";
-import { projectData } from "../../data/myproject/lksbrightsteps";
+import { projectDataEN, projectDataTH } from "../../data/myproject/lksbrightsteps";
+import { translations } from "../../data/translations.js";
+
+const currentLocale = Astro.currentLocale || "en";
+const projectData = currentLocale === "th" ? projectDataTH : projectDataEN;
 
 // Helper function
 const getBadgeColor = (tech: string) => {
@@ -66,16 +70,15 @@ const getSectionContent = (id: string) => {
       {/* 3. Overview & Images (Updated to Masonry Layout) */}
       <section class="mb-16 reveal-on-scroll space-y-8">
         <h2 class="text-3xl font-bold text-white border-b border-sky-500/20 pb-2 mb-6">
-          Overview
+          {translations[currentLocale]["detail.overview"]}
         </h2>
         <p class="text-lg leading-relaxed text-slate-300">
           {projectData.description}
         </p>
         
-        {/* ✨ UPDATED: ใช้ columns แทน grid เพื่อให้กรอบสูงเท่ารูปภาพพอดี (Masonry Style) ✨ */}
+        {/* Masonry Style */}
         <div class="columns-1 md:columns-2 gap-6 mt-8 space-y-6">
            {projectData.gallery?.map((image, index) => (
-              /* เพิ่ม break-inside-avoid เพื่อไม่ให้การ์ดขาดตอน */
               <div class="break-inside-avoid flex flex-col rounded-xl bg-slate-800/50 border border-slate-700 overflow-hidden group hover:border-sky-500/50 transition-colors shadow-lg">
                   <div class="relative overflow-hidden w-full h-auto bg-slate-900/50">
                       <img 
@@ -98,7 +101,7 @@ const getSectionContent = (id: string) => {
       {/* 4. Architecture & Logic */}
       <section class="mb-16 reveal-on-scroll">
          <h2 class="text-3xl font-bold text-white border-b border-purple-500/20 pb-2 mb-6">
-           System Architecture & Logic
+           {translations[currentLocale]["detail.architecture"]}
          </h2>
          
          <p class="mb-6 text-slate-300">
@@ -169,8 +172,8 @@ const getSectionContent = (id: string) => {
 
       {/* 5. Conclusion */}
       <section class="reveal-on-scroll text-center py-10 border-t border-slate-800">
-        <a href="/" class="inline-block mt-8 px-6 py-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-white transition-all duration-300 border border-slate-700">
-          ← Back to Portfolio
+        <a href={currentLocale === "th" ? "/th" : "/"} class="inline-block mt-8 px-6 py-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-white transition-all duration-300 border border-slate-700">
+          {translations[currentLocale]["detail.back"]}
         </a>
       </section>
 
@@ -190,7 +193,6 @@ const getSectionContent = (id: string) => {
 </Layout>
 
 <style>
-  /* --- Animation CSS --- */
   .reveal-on-scroll {
     opacity: 0;
     transform: translateY(30px);
@@ -225,7 +227,6 @@ const getSectionContent = (id: string) => {
 </style>
 
 <script>
-  // --- Script ---
   const observerOptions = {
     root: null,
     rootMargin: '0px',

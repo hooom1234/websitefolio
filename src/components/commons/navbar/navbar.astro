@@ -1,13 +1,23 @@
 ---
 import { FiMenu, FiX } from "react-icons/fi";
-import NotificationBell from "./notificationBell.jsx";
-import { FaLinkedinIn, FaGithub } from "react-icons/fa6";
+import { FaGithub } from "react-icons/fa6";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { translations } from "../../../data/translations.js";
+
+const currentLocale = Astro.currentLocale || "en";
+const currentPath = Astro.url.pathname;
+
+// Calculate target paths for the switcher
+let targetPath = "/";
+if (currentLocale === "en") {
+  targetPath = currentPath === "/" ? "/th" : `/th${currentPath}`;
+} else {
+  targetPath = currentPath.replace(/^\/th/, "") || "/";
+}
 
 const links = [
-  { name: "Home", href: "/" },
-  // { name: "Project", href: "/" },
-  { name: "about", href: "/about" },
-  
+  { name: translations[currentLocale]["nav.home"], href: getRelativeLocaleUrl(currentLocale, "/") },
+  { name: translations[currentLocale]["nav.about"], href: getRelativeLocaleUrl(currentLocale, "/about") },
 ];
 ---
 
@@ -19,11 +29,11 @@ const links = [
            shadow-[0_8px_32px_rgba(0,0,0,0.3)] transition-transform duration-500 ease-in-out"
   >
     <div class="px-6 py-3 md:px-8 md:py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center">
+      <a href={getRelativeLocaleUrl(currentLocale, "/")} class="flex items-center">
         <h3
           class="text-[#69c7c7] text-2xl md:text-3xl font-bold drop-shadow-[0_0_10px_rgba(105,199,199,0.5)]"
         >
-          PortFolio
+          {translations[currentLocale]["nav.portfolio"]}
         </h3>
       </a>
 
@@ -40,6 +50,16 @@ const links = [
             </li>
           ))
         }
+
+        <li class="flex items-center gap-2 pl-4 border-l border-white/10">
+          <a
+            href={targetPath}
+            class="px-2.5 py-1 text-xs font-bold font-mono tracking-wider rounded-md border border-white/15 bg-white/5 hover:bg-white/10 hover:border-[#69c7c7]/50 text-white transition-all duration-300 flex items-center gap-1 hover:scale-105"
+            aria-label="Toggle language"
+          >
+            <span>{currentLocale === "en" ? "TH" : "EN"}</span>
+          </a>
+        </li>
 
         <li class="flex items-center gap-3 pl-4 border-l border-white/10">
           <a
@@ -102,6 +122,17 @@ const links = [
           </li>
         ))
       }
+      <li class="pt-4 border-t border-white/10">
+        <a
+          href={targetPath}
+          class="flex items-center justify-between px-4 py-3 rounded-xl text-lg font-medium text-white/90 bg-white/5 border border-white/10 hover:bg-white/10 hover:text-[#69c7c7] transition-all duration-300"
+        >
+          <span>Language / ภาษา</span>
+          <span class="px-2 py-0.5 text-xs font-bold font-mono bg-sky-500/20 text-[#69c7c7] border border-sky-500/30 rounded">
+            {currentLocale === "en" ? "เปลี่ยนเป็น TH" : "Switch to EN"}
+          </span>
+        </a>
+      </li>
     </ul>
   </div>
 </nav>

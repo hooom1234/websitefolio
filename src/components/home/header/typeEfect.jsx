@@ -1,12 +1,12 @@
 import React from "react";
 import Typewriter from "typewriter-effect";
 
-const TypewriterComponent = () => {
+const TypewriterComponent = ({ strings = ["Cybersecurity", "Frontend", "Backend", "Fullstack"] }) => {
   return (
     <div className="notranslate mt-5 text-3xl font-bold">
       <Typewriter
         options={{
-          strings: ["Cybersecurity", "Frontend", "Backend", "Fullstack"],
+          strings: strings,
           autoStart: true,
           loop: true,
         }}

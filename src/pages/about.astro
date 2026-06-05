@@ -5,9 +5,12 @@ import AboutMe from "../components/about/aboutMe.astro";
 import Experience from "../components/about/experience.astro";
 import Features from "../components/about/features.astro";
 import Skills from "../components/about/skills.astro";
+import { translations } from "../data/translations.js";
+
+const currentLocale = Astro.currentLocale || "en";
 ---
 
-<Layout title="About Me - Tawan Pingma" description="Learn more about my skills, experience, and journey as a developer.">
+<Layout title={translations[currentLocale]["about.title"]} description={translations[currentLocale]["about.description"]}>
   
   <main class="relative bg-[#0b1121] min-h-screen text-slate-300 selection:bg-sky-500/30 overflow-hidden">
     
@@ -30,7 +33,7 @@ import Skills from "../components/about/skills.astro";
       
       {/* Hero Section */}
       <section class="animate-fade-in-down">
-        <Hero titulo="About Me" />
+        <Hero titulo={translations[currentLocale]["aboutHome.title"]} />
       </section>
       
       {/* ส่วนเนื้อหาที่เลื่อนแล้วค่อยๆ ปรากฏ (Scroll Reveal) */}
@@ -62,20 +65,17 @@ import Skills from "../components/about/skills.astro";
 <style>
   /* --- Animation CSS --- */
 
-  /* เริ่มต้น: ซ่อน Element และเลื่อนลงไปข้างล่าง */
   .reveal-on-scroll {
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
   }
 
-  /* เมื่อ Active: แสดงผลและเลื่อนกลับมาที่เดิม */
   .reveal-on-scroll.is-visible {
     opacity: 1;
     transform: translateY(0);
   }
 
-  /* Keyframes สำหรับแสง Background ขยับไปมา */
   @keyframes blob {
     0% { transform: translate(0px, 0px) scale(1); }
     33% { transform: translate(30px, -50px) scale(1.1); }
@@ -92,7 +92,6 @@ import Skills from "../components/about/skills.astro";
     animation-delay: 4s;
   }
   
-  /* Animation ง่ายๆ สำหรับ Hero ตอนโหลดหน้าเว็บ */
   @keyframes fadeInDown {
     from {
       opacity: 0;
@@ -109,20 +108,17 @@ import Skills from "../components/about/skills.astro";
 </style>
 
 <script>
-  // --- Script สำหรับจับการ Scroll ---
-  // ใช้ IntersectionObserver เพื่อดูว่า Element เข้ามาในหน้าจอหรือยัง
-  
   const observerOptions = {
     root: null,
     rootMargin: '0px',
-    threshold: 0.1 // แสดงเมื่อเห็น Element 10%
+    threshold: 0.1
   };
 
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target); // หยุดดูเมื่อแสดงผลแล้ว (เพื่อให้เล่นครั้งเดียว)
+        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);

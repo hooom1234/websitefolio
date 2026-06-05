@@ -1,6 +1,13 @@
 ---
 import SocialIcons from "../../commons/socialIcons/socialIcons.jsx";
 import TypeEfect from "../header/typeEfect.jsx";
+import { translations } from "../../../data/translations.js";
+
+const currentLocale = Astro.currentLocale || "en";
+
+const typewriterStrings = currentLocale === "th" 
+  ? ["ความปลอดภัยไซเบอร์", "หน้าบ้าน (Frontend)", "หลังบ้าน (Backend)", "Fullstack"]
+  : ["Cybersecurity", "Frontend", "Backend", "Fullstack"];
 ---
 
 <header class="relative h-screen bg-[#0b1121] overflow-hidden flex items-center justify-center">
@@ -17,15 +24,14 @@ import TypeEfect from "../header/typeEfect.jsx";
       
       <main class="flex flex-col items-start text-left space-y-6 order-2 lg:order-1 reveal-element">
         <h1 class="text-5xl md:text-7xl font-bold text-white text-shadow leading-tight">
-          Hello <span class="text-[#69c7c7] drop-shadow-[0_0_10px_rgba(105,199,199,0.5)]">World!</span>
+          {translations[currentLocale]["header.hello"]} <span class="text-[#69c7c7] drop-shadow-[0_0_10px_rgba(105,199,199,0.5)]">{translations[currentLocale]["header.world"]}</span>
         </h1>
 
         <div class="text-xl md:text-3xl font-medium text-slate-300 h-8">
-             <TypeEfect client:visible />
+             <TypeEfect client:visible strings={typewriterStrings} />
         </div>
 
-        <p class="text-base md:text-lg text-slate-400 max-w-lg font-light leading-relaxed">
-          I'm Tawan Pingma, a student with a passion for coding. <br>My main focus is on Capture The Flag and Web Application development.
+        <p class="text-base md:text-lg text-slate-400 max-w-lg font-light leading-relaxed" set:html={translations[currentLocale]["header.intro"]}>
         </p>
         
         <div class="flex flex-col sm:flex-row items-start gap-4 pt-4">
@@ -40,7 +46,7 @@ import TypeEfect from "../header/typeEfect.jsx";
             text-white font-semibold rounded-full transition-all duration-300 shadow-lg shadow-blue-500/30
             hover:shadow-blue-500/50 hover:-translate-y-1"
           >
-            Download Resume
+            {translations[currentLocale]["header.downloadResume"]}
           </a>
         </div>
       </main>
@@ -76,7 +82,7 @@ import TypeEfect from "../header/typeEfect.jsx";
             </div>
             <div class="flex">
               <span class="text-slate-600 w-6 select-none">5</span>
-              <span class="text-slate-400">// Welcome to my world!</span>
+              <span class="text-slate-400">{translations[currentLocale]["header.welcome"]}</span>
             </div>
           </div>
         </div>
@@ -86,7 +92,7 @@ import TypeEfect from "../header/typeEfect.jsx";
   </div>
 
   <div id="scroll-indicator" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 transition-all duration-500 z-20">
-    <span class="text-[10px] text-slate-400 font-mono tracking-[0.2em] uppercase">Scroll Down For more</span>
+    <span class="text-[10px] text-slate-400 font-mono tracking-[0.2em] uppercase">{translations[currentLocale]["header.scroll"]}</span>
     <div class="w-6 h-10 border-2 border-slate-600 rounded-full flex justify-center p-1">
       <div class="w-1.5 h-1.5 bg-sky-400 rounded-full animate-bounce"></div>
     </div>
@@ -152,19 +158,19 @@ import TypeEfect from "../header/typeEfect.jsx";
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal-element').forEach((el) => observer.observe(el));
 
-    // 2. [NEW] Scroll Indicator Logic
+    // 2. Scroll Indicator Logic
     const scrollIndicator = document.getElementById('scroll-indicator');
     
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        // เมื่อเลื่อนลงเกิน 50px: ซ่อนและเลื่อนลง
-        scrollIndicator.classList.add('opacity-0', 'translate-y-4');
-        scrollIndicator.classList.remove('opacity-100', 'translate-y-0');
-      } else {
-        // เมื่ออยู่ด้านบน: แสดงผลปกติ
-        scrollIndicator.classList.remove('opacity-0', 'translate-y-4');
-        scrollIndicator.classList.add('opacity-100', 'translate-y-0');
-      }
-    });
+    if (scrollIndicator) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          scrollIndicator.classList.add('opacity-0', 'translate-y-4');
+          scrollIndicator.classList.remove('opacity-100', 'translate-y-0');
+        } else {
+          scrollIndicator.classList.remove('opacity-0', 'translate-y-4');
+          scrollIndicator.classList.add('opacity-100', 'translate-y-0');
+        }
+      });
+    }
   });
 </script>

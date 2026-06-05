@@ -2,6 +2,14 @@
 import { HiArrowRight, HiTerminal, HiCode } from "react-icons/hi";
 import { FiCpu, FiShield } from "react-icons/fi";
 import MiFoto from "../../../assets/img/forsite1.png";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { translations } from "../../../data/translations.js";
+
+const currentLocale = Astro.currentLocale || "en";
+
+const typewriterWords = currentLocale === "th"
+  ? ["นักศึกษาโทรคมนาคม", "ผู้สนใจด้านไซเบอร์ซีคิวริตี้", "อนาคตวิศวกรระบบเครือข่าย"]
+  : ["Telecommunications Student", "Cybersecurity Enthusiast", "Future Network Engineer"];
 ---
 
 <section class="relative py-24 px-4 overflow-hidden bg-[#0b1121] flex items-center justify-center min-h-[90vh]">
@@ -64,19 +72,17 @@ import MiFoto from "../../../assets/img/forsite1.png";
             </div>
             
             <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight glitch-wrapper">
-               <span ">About Me</span>
+               <span>{translations[currentLocale]["aboutHome.title"]}</span>
             </h2>
           </div>
 
           <div class="space-y-6">
-            <h3 class="text-xl md:text-2xl text-slate-200 font-medium flex items-center gap-2">
-              <span class="text-blue-400">&gt;</span> I am a
-              <span id="typewriter" class="text-sky-400 font-bold border-r-2 border-sky-400 pr-1 animate-blink"></span>
+            <h3 class="text-xl md:text-2xl text-slate-200 font-medium flex items-center gap-2 font-mono">
+              <span class="text-blue-400">&gt;</span> {translations[currentLocale]["aboutHome.iam"]}
+              <span id="typewriter" data-words={JSON.stringify(typewriterWords)} class="text-sky-400 font-bold border-r-2 border-sky-400 pr-1 animate-blink"></span>
             </h3>
 
-            <p class="text-slate-400 leading-relaxed text-base md:text-lg border-l border-sky-500/20 pl-4">
-              My name is <strong class="text-white">Tawan Pingma</strong>, a Grade 12 student with a passion for building secure and scalable software. 
-              My goal is to join the <span class="text-blue-300 font-medium hover:text-blue-200 transition-colors cursor-pointer border-b border-blue-500/30">Computer Science</span>.
+            <p class="text-slate-400 leading-relaxed text-base md:text-lg border-l border-sky-500/20 pl-4" set:html={translations[currentLocale]["aboutHome.intro"]}>
             </p>
           </div>
           
@@ -84,33 +90,33 @@ import MiFoto from "../../../assets/img/forsite1.png";
              <div class="p-4 rounded-xl bg-slate-800/30 border border-white/5 hover:border-sky-500/30 hover:bg-slate-800/50 transition-all duration-300 group/card">
                 <div class="flex items-center gap-3 mb-2">
                    <FiCpu className="text-sky-400 group-hover/card:scale-110 transition-transform" size={20} />
-                   <h4 class="text-white font-medium">Full-Stack Dev</h4>
+                   <h4 class="text-white font-medium">{translations[currentLocale]["aboutHome.devTitle"]}</h4>
                 </div>
-                <p class="text-sm text-slate-400">Have knowledge in both Front-End and Back-End development, at a junior level.</p>
+                <p class="text-sm text-slate-400">{translations[currentLocale]["aboutHome.devDesc"]}</p>
              </div>
 
              <div class="p-4 rounded-xl bg-slate-800/30 border border-white/5 hover:border-blue-500/30 hover:bg-slate-800/50 transition-all duration-300 group/card">
                 <div class="flex items-center gap-3 mb-2">
                    <FiShield className="text-blue-400 group-hover/card:scale-110 transition-transform" size={20} />
-                   <h4 class="text-white font-medium">Cybersecurity</h4>
+                   <h4 class="text-white font-medium">{translations[currentLocale]["aboutHome.cyber"]}</h4>
                 </div>
-                <p class="text-sm text-slate-400">CTF Player, Web Security, Networking, Cryptography & Vulnerability Research.</p>
+                <p class="text-sm text-slate-400">{translations[currentLocale]["aboutHome.cyberDesc"]}</p>
              </div>
           </div>
 
           <div class="mt-10 flex flex-wrap gap-4">
             <a
-              href="/about"
+              href={getRelativeLocaleUrl(currentLocale, "/about")}
               class="relative inline-flex items-center gap-3 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all group-btn overflow-hidden shadow-lg shadow-blue-900/20"
             >
               <div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out"></div>
-              <span class="font-bold relative z-10 tracking-wide">FULL PROFILE</span>
+              <span class="font-bold relative z-10 tracking-wide">{translations[currentLocale]["aboutHome.fullProfile"]}</span>
               <HiArrowRight className="relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
             
             <button class="px-6 py-4 rounded-lg border border-white/10 text-slate-300 hover:text-white hover:bg-white/5 transition flex items-center gap-2">
                <HiCode />
-               <span class="text-sm font-mono">SCROLL DOWN</span>
+               <span class="text-sm font-mono">{translations[currentLocale]["aboutHome.scroll"]}</span>
             </button>
           </div>
 
@@ -138,20 +144,6 @@ import MiFoto from "../../../assets/img/forsite1.png";
   
   /* Glitch Colors Updated to Blue/Cyan */
   .glitch-wrapper { position: relative; }
-  .glitch-text { position: relative; z-index: 1; }
-  .glitch-text::before, .glitch-text::after {
-    content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #0b1121; /* Match BG */
-  }
-  .glitch-text::before {
-    left: 2px; text-shadow: -1px 0 #3b82f6; /* Blue-500 */ clip-path: inset(44% 0 61% 0); animation: glitch-anim 0.8s infinite linear alternate-reverse;
-  }
-  .glitch-text::after {
-    left: -2px; text-shadow: -1px 0 #0ea5e9; /* Sky-500 */ clip-path: inset(50% 0 30% 0); animation: glitch-anim 0.8s infinite linear alternate-reverse;
-  }
-  @keyframes glitch-anim {
-    0% { clip-path: inset(80% 0 0 0); } 20% { clip-path: inset(20% 0 60% 0); } 40% { clip-path: inset(50% 0 30% 0); }
-    60% { clip-path: inset(10% 0 80% 0); } 80% { clip-path: inset(30% 0 10% 0); } 100% { clip-path: inset(70% 0 20% 0); }
-  }
   
   @keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: #38bdf8; } } /* Sky-400 */
   .animate-blink { animation: blink 0.75s step-end infinite; }
@@ -162,27 +154,33 @@ import MiFoto from "../../../assets/img/forsite1.png";
 </style>
 
 <script>
-  // Script เดิมทำงานได้ดีอยู่แล้วครับ
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal-element-left, .reveal-element-right').forEach((el) => observer.observe(el));
 
-  const words = ["Software Developer", "Cybersecurity Enthusiast", "Tech Innovator"];
-  let i = 0;
-  let timer;
   function typeWriter() {
     const heading = document.getElementById("typewriter");
     if (!heading) return;
-    const word = words[i];
-    let charIndex = 0;
-    let isDeleting = false;
+    const wordsAttr = heading.getAttribute("data-words");
+    if (!wordsAttr) return;
+    const words = JSON.parse(wordsAttr);
+    let i = 0;
+    let timer;
+    
     function type() {
-      const current = word.substring(0, charIndex);
-      heading.textContent = current;
-      if (!isDeleting && charIndex < word.length) { charIndex++; timer = setTimeout(type, 100); }
-      else if (isDeleting && charIndex > 0) { charIndex--; timer = setTimeout(type, 50); }
-      else { isDeleting = !isDeleting; if (!isDeleting) i = (i + 1) % words.length; timer = setTimeout(type, isDeleting ? 100 : 2000); }
+      const word = words[i];
+      let charIndex = 0;
+      let isDeleting = false;
+      
+      function step() {
+        const current = word.substring(0, charIndex);
+        heading.textContent = current;
+        if (!isDeleting && charIndex < word.length) { charIndex++; timer = setTimeout(step, 100); }
+        else if (isDeleting && charIndex > 0) { charIndex--; timer = setTimeout(step, 50); }
+        else { isDeleting = !isDeleting; if (!isDeleting) i = (i + 1) % words.length; timer = setTimeout(type, isDeleting ? 100 : 2000); }
+      }
+      step();
     }
     type();
   }

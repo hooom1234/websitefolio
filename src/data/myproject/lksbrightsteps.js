@@ -1,12 +1,11 @@
 // src/data/myproject/lksbrightsteps.js
 
-export const projectData = {
+export const projectDataTH = {
   title: "LKSBrightSteps",
   subtitle: "แอปพลิเคชันเก็บบันทึกข้อมูลพฤติกรรมของเด็กที่บกพร่องทางด้านการเรียนรู้",
   description: "LKSBrightSteps เป็น Mobile Application ที่พัฒนาขึ้นเพื่อช่วยครูและผู้ปกครองในการติดตามและบันทึกพฤติกรรมของเด็กที่มีความบกพร่องทางการเรียนรู้ (Learning Disabilities) โดยมีการวิเคราะห์ผลในรูปแบบกราฟและการส่งออกรายงาน เพื่อให้การดูแลและพัฒนาเด็กเป็นไปอย่างมีประสิทธิภาพ",
   tags: ["React Native", "PHP", "MySQL", "REST API", "Linux Server"],
 
-  // --- ✨ ส่วน Gallery (เพิ่ม/ลบรูปได้จากตรงนี้) ✨ ---
   gallery: [
     {
       src: "https://res.cloudinary.com/dg0uswwo4/image/upload/f_auto/v1765019138/%E0%B8%AA%E0%B8%81%E0%B8%A3%E0%B8%B5%E0%B8%99%E0%B8%8A%E0%B9%87%E0%B8%AD%E0%B8%95_2025-12-06_180131_dckvmf.png",
@@ -18,11 +17,8 @@ export const projectData = {
       alt: "Data Visualization Dashboard",
       caption: "Software Structure"
     },
-    
-   
   ],
   
-  // --- เนื้อหาแต่ละส่วน (Sections) ---
   sections: [
     {
       id: "intro",
@@ -47,7 +43,6 @@ export const projectData = {
     }
   ],
 
-  // --- Code Snippets (ตัวอย่างโค้ด) ---
   codeSnippets: {
     login: `// React Native: Login Function (Authentication)
 const submitLogin = async () => {
@@ -74,7 +69,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
-
+ 
 if ($result->num_rows == 1) {
     $row = $result->fetch_assoc();
     // ใช้ password_verify เพื่อความปลอดภัย
@@ -203,3 +198,40 @@ if ($stmt->execute()) {
 }`
   }
 };
+
+export const projectDataEN = {
+  title: "LKSBrightSteps",
+  subtitle: "An application for recording behavioral data of children with learning disabilities",
+  description: "LKSBrightSteps is a Mobile Application developed to help teachers and parents track and record the behavior of children with learning disabilities (LD). It features data visualization via graphs and report exporting in order to provide efficient care and development.",
+  tags: ["React Native", "PHP", "MySQL", "REST API", "Linux Server"],
+
+  gallery: projectDataTH.gallery,
+  
+  sections: [
+    {
+      id: "intro",
+      title: "Background & Importance",
+      content: "This project was created to solve the issues of paper-based behavioral logs that are easily lost and hard to analyze. The application digitizes this behavior data, enabling historical lookup and instant notifications for parents.",
+    },
+    {
+      id: "architecture",
+      title: "System Architecture",
+      content: "The system is divided into two main parts: the Front-end built with React Native for the Mobile App, and the Back-end using PHP and MySQL on a Linux server, communicating via a REST API.",
+    },
+    {
+      id: "features",
+      title: "Key Features",
+      list: [
+        "Role-based login system (Reporter, Parent, Admin)",
+        "Behavior logging with severity levels (Green/Yellow/Red)",
+        "Real-time notification and monitoring system",
+        "Evolution graph visualization",
+        "PDF report generation"
+      ]
+    }
+  ],
+
+  codeSnippets: projectDataTH.codeSnippets
+};
+
+export const projectData = projectDataEN;

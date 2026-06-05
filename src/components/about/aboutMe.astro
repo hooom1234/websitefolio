@@ -1,5 +1,8 @@
 ---
 import MiFoto from "../../assets/img/forsite1.png";
+import { translations } from "../../data/translations.js";
+
+const currentLocale = Astro.currentLocale || "en";
 ---
 
 <div class="mx-auto mt-20 flex max-w-6xl flex-col items-center gap-12 px-6 lg:flex-row relative z-10">
@@ -32,39 +35,36 @@ import MiFoto from "../../assets/img/forsite1.png";
     <div class="hidden lg:block w-20 h-1 bg-gradient-to-r from-sky-500 to-transparent rounded-full mb-6 opacity-50"></div>
 
     <h2 class="text-3xl md:text-5xl font-bold text-white tracking-tight">
-      My name is <span class="inline-block text-[#69c7c7] filter drop-shadow-sm hover:scale-105 transition-transform origin-left duration-300">Tawan</span>
+      <span set:html={translations[currentLocale]["about.me.intro"]}></span>
     </h2>
     
     <div class="space-y-4 text-base md:text-lg leading-relaxed font-light">
-        <p>
-          I am from <span class="text-sky-400 font-medium">LampangKalayanee Shcool</span> aspiring to become a
-          <span class="text-sky-400 font-medium inline-block border-b border-sky-500/30 pb-0.5">Software Developer</span>, 
-          with a focus on <span class="text-white font-medium">Web Development</span> and 
-          <span class="text-white font-medium">Cybersecurity</span>.
+        <p set:html={translations[currentLocale]["about.me.p1"]}>
         </p>
     
+        <p set:html={translations[currentLocale]["about.me.p2"]}>
+        </p>
+
         <p class="flex flex-col lg:flex-row items-center lg:items-start gap-2 pt-2">
-          <span>I enjoy building things with:</span>
+          <span>{translations[currentLocale]["about.me.p3"]}</span>
           <span class="font-mono text-sm text-sky-300 bg-blue-950/50 border border-blue-800/50 px-3 py-1.5 rounded-md shadow-sm">
-             React, ReactNative, Tailwind CSS, Modern JS& python for CTF
+             React, ReactNative, Tailwind CSS, Modern JS & Python for CTF
           </span>
         </p>
     
-        <p>
-          My interest in <span class="text-sky-400 font-medium">technology</span> started when I playing game and began exploring how software works behind the scenes.
-          Motivated by <span class="text-white font-medium">curiosity</span>, I have been self-studying to build a strong foundation.
+        <p set:html={translations[currentLocale]["about.me.p4"]}>
         </p>
 
         <div class="pt-4">
-            <p class="text-white font-medium mb-2">My Goals:</p>
+            <p class="text-white font-medium mb-2">{translations[currentLocale]["about.me.goals"]}</p>
             <ul class="flex flex-col gap-2 items-center lg:items-start">
                 <li class="flex items-center gap-2 text-sky-300">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sky-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
-                    Pursue Computer Science
+                    {translations[currentLocale]["about.me.goal1"]}
                 </li>
                 <li class="flex items-center gap-2 text-slate-400">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sky-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
-                    Continuous learning & technological adaptation
+                    {translations[currentLocale]["about.me.goal2"]}
                 </li>
             </ul>
         </div>
@@ -74,7 +74,6 @@ import MiFoto from "../../assets/img/forsite1.png";
 </div>
 
 <style>
-  /* Animation สำหรับการลอยขึ้นลง */
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-15px); }
@@ -83,7 +82,6 @@ import MiFoto from "../../assets/img/forsite1.png";
     animation: float 6s ease-in-out infinite;
   }
 
-  /* Animation สำหรับการหมุนช้าๆ ของวงแหวน */
   @keyframes spin-slow {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }

@@ -1,23 +1,25 @@
 ---
 import { FaShieldAlt, FaTerminal } from "react-icons/fa";
+import { translations } from "../../data/translations.js";
 
-// ข้อมูล Services
+const currentLocale = Astro.currentLocale || "en";
+
+// Localized services list
 const services = [
-	  {
+  {
     icon: FaTerminal,
-    title: "Software Development",
-    desc: "Building robust software solutions with clean code practices, logical problem solving, and efficient algorithms.",
+    title: translations[currentLocale]["what.dev"],
+    desc: translations[currentLocale]["what.devDesc"],
     color: "from-emerald-400 to-green-300",
     shadow: "group-hover:shadow-[0_0_20px_rgba(52,211,153,0.4)]"
   },
   {
     icon: FaShieldAlt,
-    title: "Cybersecurity & CTF",
-    desc: "Exploring system vulnerabilities and securing digital assets. Passionate about Capture The Flag (CTF) challenges and ethical hacking.",
+    title: translations[currentLocale]["what.cyber"],
+    desc: translations[currentLocale]["what.cyberDesc"],
     color: "from-purple-500 to-pink-500",
     shadow: "group-hover:shadow-[0_0_20px_rgba(168,85,247,0.4)]"
   }
-
 ];
 ---
 
@@ -25,11 +27,11 @@ const services = [
     
     <div class="mb-16 text-center">
         <h2 class="text-4xl md:text-5xl font-bold text-white inline-flex flex-col items-center gap-2">
-            <span class="relative z-10">What I Do</span>
+            <span class="relative z-10">{translations[currentLocale]["what.title"]}</span>
             <span class="h-1.5 w-24 rounded-full bg-gradient-to-r from-[#7836cf] to-[#0debd8]"></span>
         </h2>
         <p class="text-zinc-400 mt-4 max-w-lg mx-auto">
-            Combining creativity with technical skills to build secure and scalable digital experiences.
+            {translations[currentLocale]["what.subtitle"]}
         </p>
     </div>
 

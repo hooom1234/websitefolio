@@ -3,10 +3,13 @@ import NmapImg from "../../assets/skills/nmap.png";
 import WiresharkImg from "../../assets/skills/wireshark.png";
 import BurpSuiteImg from "../../assets/skills/burpsuite.svg";
 import CapCutImg from "../../assets/skills/capcut.png";
+import { translations } from "../../data/translations.js";
+
+const currentLocale = Astro.currentLocale || "en";
 
 const skillCategories = [
   {
-    title: "Languages",
+    title: translations[currentLocale]["skills.languages"],
     skills: [
       { name: "Python", icon: "python" },
       { name: "PHP",  icon: "php" },
@@ -17,7 +20,7 @@ const skillCategories = [
     ],
   },
   {
-    title: "Frontend & Cross-Platform",
+    title: translations[currentLocale]["skills.frontend"],
     skills: [
       { name: "React", icon: "react" },
       { name: "React Native", icon: "react" },
@@ -27,7 +30,7 @@ const skillCategories = [
     ],
   },
   {
-    title: "Backend, Cloud & IoT",
+    title: translations[currentLocale]["skills.backend"],
     skills: [
       { name: "AWS", icon: "amazonwebservices", variant: "original-wordmark" },
       { name: "Arduino", icon: "arduino" },
@@ -37,7 +40,7 @@ const skillCategories = [
     ],
   },
   {
-    title: "Cybersecurity & Pentest",
+    title: translations[currentLocale]["skills.cyber"],
     skills: [
       { name: "Linux", icon: "linux" },
       { name: "Bash", icon: "bash" },
@@ -47,7 +50,7 @@ const skillCategories = [
     ],
   },
   {
-    title: "Creative & Design",
+    title: translations[currentLocale]["skills.creative"],
     skills: [
       { name: "Photoshop", icon: "photoshop" },
       { name: "Canva", icon: "canva" },
@@ -62,11 +65,11 @@ const skillCategories = [
   
   <div class="mb-20 flex flex-col items-center text-center">
     <h2 class="text-4xl md:text-5xl font-bold text-white inline-flex flex-col items-center gap-2">
-      <span class="relative z-10">Technical Skills</span>
+      <span class="relative z-10">{translations[currentLocale]["skills.title"]}</span>
       <span class="h-1.5 w-24 rounded-full bg-gradient-to-r from-[#7836cf] to-[#0debd8] shadow-[0_0_15px_#7836cf]"></span>
     </h2>
     <p class="mt-6 text-zinc-400 max-w-lg text-lg leading-relaxed">
-      A comprehensive toolkit ranging from software development and cloud infrastructure to cybersecurity.
+      {translations[currentLocale]["skills.subtitle"]}
     </p>
   </div>
 
