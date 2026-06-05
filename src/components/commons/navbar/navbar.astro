@@ -12,8 +12,6 @@ const links = [
 ---
 
 <nav class="relative">
-  <input id="menu-toggle" type="checkbox" class="peer hidden md:hidden" />
-
   <nav
     id="navbar-header"
     class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] md:w-[85%] max-w-7xl z-50 
@@ -49,6 +47,7 @@ const links = [
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub"
+            class="p-2.5 hover:bg-white/5 rounded-full flex items-center justify-center transition-all duration-300"
           >
             <FaGithub className="h-6 w-6 cursor-pointer text-white hover:text-[#7836cf] transition-colors" />
           </a>
@@ -56,28 +55,38 @@ const links = [
       </ul>
 
       <div class="flex md:hidden items-center gap-4 z-50">
-        
-        <label for="menu-toggle" class="cursor-pointer p-1 hover:bg-white/10 rounded-full transition-colors">
-          <FiMenu className="h-6 w-6 text-white peer-checked:hidden" />
-          <FiX className="h-6 w-6 text-white hidden peer-checked:block" />
-        </label>
+        <button
+          id="menu-toggle-btn"
+          class="cursor-pointer p-2 hover:bg-white/10 rounded-full transition-colors flex items-center justify-center text-white focus:outline-none focus:ring-2 focus:ring-[#69c7c7]"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <FiMenu id="menu-icon-open" className="h-6 w-6" />
+          <FiX id="menu-icon-close" className="h-6 w-6 hidden" />
+        </button>
       </div>
     </div>
   </nav>
 
-  <label
-    for="menu-toggle"
-    class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden peer-checked:block cursor-pointer z-40 md:hidden transition-opacity"
-  ></label>
+  <div
+    id="mobile-menu-backdrop"
+    class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden cursor-pointer z-40 md:hidden transition-opacity opacity-0 duration-300"
+  ></div>
 
   <div
-    class="fixed top-0 right-0 h-full w-72 bg-gray-900/95 backdrop-blur-xl border-l border-white/10 shadow-2xl transform translate-x-full transition-transform duration-300 peer-checked:translate-x-0 z-50 md:translate-x-full md:hidden"
+    id="mobile-menu"
+    class="fixed top-0 right-0 h-full w-72 bg-gray-900/95 backdrop-blur-xl border-l border-white/10 shadow-2xl transform translate-x-full transition-transform duration-300 z-50 md:translate-x-full md:hidden"
   >
     <div class="flex justify-between items-center p-6 border-b border-white/10">
       <span class="text-white font-bold text-xl">Menu</span>
-      <label for="menu-toggle" class="cursor-pointer p-1 hover:bg-white/10 rounded-full">
-        <FiX className="h-6 w-6 text-white" />
-      </label>
+      <button
+        id="mobile-menu-close-btn"
+        class="cursor-pointer p-1 hover:bg-white/10 rounded-full text-white"
+        aria-label="Close menu"
+      >
+        <FiX className="h-6 w-6" />
+      </button>
     </div>
 
     <ul id="navbar-links-mobile" class="flex flex-col space-y-2 p-6">
@@ -110,11 +119,8 @@ const links = [
         
         // ถ้าเลื่อนลงเยอะๆ ให้ซ่อน
         if (currentScrollY > lastScrollY && currentScrollY > 50) {
-            // ซ่อน Navbar: ดึงขึ้นไปข้างบน (-150%) 
-            // **สำคัญ** ต้องคง -50% ของแกน X ไว้ เพื่อให้มันยังอยู่ตรงกลาง
             navbar.style.transform = "translate(0, -200%)";
         } else {
-            // แสดง Navbar: กลับมาที่เดิม (Y=0)
             navbar.style.transform = "translate(0, 0)";
         }
         
@@ -123,7 +129,47 @@ const links = [
 
     window.addEventListener("scroll", handleScroll);
 
-    // --- Logic 2: Mark Active Links (เหมือนเดิม) ---
+    // --- Logic 2: Accessible Mobile Menu ---
+    const menuToggleBtn = document.getElementById("menu-toggle-btn");
+    const mobileMenuCloseBtn = document.getElementById("mobile-menu-close-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileMenuBackdrop = document.getElementById("mobile-menu-backdrop");
+    const menuIconOpen = document.getElementById("menu-icon-open");
+    const menuIconClose = document.getElementById("menu-icon-close");
+
+    function toggleMenu() {
+      if (!menuToggleBtn || !mobileMenu || !mobileMenuBackdrop || !menuIconOpen || !menuIconClose) return;
+      const isExpanded = menuToggleBtn.getAttribute("aria-expanded") === "true";
+      menuToggleBtn.setAttribute("aria-expanded", !isExpanded ? "true" : "false");
+      
+      if (!isExpanded) {
+        mobileMenu.classList.remove("translate-x-full");
+        mobileMenuBackdrop.classList.remove("hidden");
+        setTimeout(() => mobileMenuBackdrop.classList.remove("opacity-0"), 10);
+        menuIconOpen.classList.add("hidden");
+        menuIconClose.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+      } else {
+        mobileMenu.classList.add("translate-x-full");
+        mobileMenuBackdrop.classList.add("opacity-0");
+        menuIconOpen.classList.remove("hidden");
+        menuIconClose.classList.add("hidden");
+        document.body.style.overflow = "";
+        setTimeout(() => {
+          if (menuToggleBtn.getAttribute("aria-expanded") === "false") {
+            mobileMenuBackdrop.classList.add("hidden");
+          }
+        }, 300);
+      }
+    }
+
+    if (menuToggleBtn && mobileMenuCloseBtn && mobileMenu && mobileMenuBackdrop) {
+      menuToggleBtn.addEventListener("click", toggleMenu);
+      mobileMenuCloseBtn.addEventListener("click", toggleMenu);
+      mobileMenuBackdrop.addEventListener("click", toggleMenu);
+    }
+
+    // --- Logic 3: Mark Active Links (เหมือนเดิม) ---
     function markActiveLinks() {
       const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
       const desktopLinks = Array.from(document.querySelectorAll("#navbar-links .nav-link"));
