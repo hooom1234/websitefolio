@@ -40,14 +40,32 @@ const typewriterStrings = currentLocale === "th"
            </div>
            
            <a
+            href="/portforshare.pdf"
             target="_blank"
-            href="https://drive.google.com/file/d/1niMcETuB8IlxXMlO0Uk7gJbdVgLqxyTO/view?usp=sharing"
-            class="px-8 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-500 hover:to-indigo-600 
+            download="Tawan_Portfolio.pdf"
+            class="px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-500 hover:to-indigo-600 
             text-white font-semibold rounded-full transition-all duration-300 shadow-lg shadow-blue-500/30
-            hover:shadow-blue-500/50 hover:-translate-y-1"
+            hover:shadow-blue-500/50 hover:-translate-y-1 flex items-center gap-2"
           >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+            </svg>
+            {translations[currentLocale]["header.downloadPortfolio"]}
+          </a>
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            download="Tawan_Resume.pdf"
+            class="px-6 py-3 bg-slate-800/80 hover:bg-slate-700/80 border border-slate-600 hover:border-sky-500/50
+            text-slate-200 font-semibold rounded-full transition-all duration-300 shadow-lg
+            hover:shadow-sky-500/20 hover:-translate-y-1 flex items-center gap-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
             {translations[currentLocale]["header.downloadResume"]}
           </a>
+
         </div>
       </main>
 

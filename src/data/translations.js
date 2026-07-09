@@ -16,6 +16,7 @@ export const translations = {
     "header.world": "World!",
     "header.intro": "I'm Tawan Pingma, a Telecommunications Engineering student at KMITL. <br>My main focus is on Cybersecurity, Capture The Flag, and Networking.",
     "header.downloadResume": "Download Resume",
+    "header.downloadPortfolio": "Portfolio PDF",
     "header.welcome": "// Welcome to my world!",
     "header.scroll": "Scroll Down For more",
 
@@ -96,6 +97,7 @@ export const translations = {
     "header.world": "ชาวโลก!",
     "header.intro": "ผมชื่อ ตะวัน พิงมะ นักศึกษาวิศวกรรมโทรคมนาคม สจล. <br>ความสนใจหลักของผมคือความมั่นคงปลอดภัยไซเบอร์ (Cybersecurity), Capture The Flag และระบบเครือข่าย (Networking)",
     "header.downloadResume": "ดาวน์โหลด Resume",
+    "header.downloadPortfolio": "Portfolio PDF",
     "header.welcome": "// ยินดีต้อนรับสู่โลกของผม!",
     "header.scroll": "เลื่อนลงเพื่อดูเพิ่มเติม",
 
