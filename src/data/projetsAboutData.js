@@ -1,6 +1,7 @@
 import App1 from "../assets/img-projects/App1.png";
 import Timeless from "../assets/img-projects/Timeless.png";
 import Timelife from "../assets/img-projects/Timelife.png";
+import TcasChatBot from "../assets/img-projects/tcaschatbot.png";
 
 export const proyectosEN = [
   {
@@ -9,6 +10,13 @@ export const proyectosEN = [
     tecnologias: ["ReactNative", "PHP", "AWS", "MySQL"],
     demo: "/projects/lksbrightsteps",
     codigo: "https://github.com/hooom1234/WebApp-BS-1.0.2",
+  },
+  {
+    titulo: "TCAS ChatBot — AI Assistant for Thai University Admission",
+    imagen: TcasChatBot.src,
+    tecnologias: ["Next.js", "Gemini AI", "RAG", "TypeScript"],
+    demo: "/projects/tcaschatbot",
+    codigo: "https://github.com/hooom1234/TcasChatBot",
   },
   {
     titulo: "Simple Time Life Planner",
@@ -40,6 +48,13 @@ export const proyectosTH = [
     tecnologias: ["ReactNative", "PHP", "AWS", "MySQL"],
     demo: "/projects/lksbrightsteps",
     codigo: "https://github.com/hooom1234/WebApp-BS-1.0.2",
+  },
+  {
+    titulo: "TCAS ChatBot — AI ตอบคำถามการสมัครมหาวิทยาลัย",
+    imagen: TcasChatBot.src,
+    tecnologias: ["Next.js", "Gemini AI", "RAG", "TypeScript"],
+    demo: "/projects/tcaschatbot",
+    codigo: "https://github.com/hooom1234/TcasChatBot",
   },
   {
     titulo: "Simple Time Life Planner (ตารางวางแผนชีวิต)",

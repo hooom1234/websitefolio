@@ -1,0 +1,370 @@
+---
+// src/pages/projects/tcaschatbot.astro
+import Layout from "../../layouts/Layout.astro";
+import { projectDataEN, projectDataTH } from "../../data/myproject/tcaschatbot";
+import { translations } from "../../data/translations.js";
+import Screen1 from "../../assets/img-projects/tcaschatbot-screen1.png";
+import Screen2 from "../../assets/img-projects/tcaschatbot-screen2.png";
+
+const currentLocale = Astro.currentLocale || "en";
+const projectData = currentLocale === "th" ? projectDataTH : projectDataEN;
+
+// Use local screenshots for gallery
+const localGallery = [
+  {
+    src: Screen1.src,
+    alt: "TCAS ChatBot หน้าหลัก",
+    caption: currentLocale === "th" ? "หน้าหลัก — แชทถาม-ตอบ TCAS ด้วย Google Gemini AI" : "Main Page — AI-powered TCAS Q&A Chat Interface"
+  },
+  {
+    src: Screen2.src,
+    alt: "TCAS ChatBot คณะใกล้เคียง",
+    caption: currentLocale === "th" ? "ฟีเจอร์ค้นหาคณะใกล้เคียง (Semantic Search)" : "Similar Faculty Finder (Semantic Search)"
+  },
+];
+
+// Helper function
+const getBadgeColor = (tech: string) => {
+  if (tech.includes("Next")) return "bg-slate-500/20 text-slate-200 border-slate-500/50";
+  if (tech.includes("Gemini") || tech.includes("AI")) return "bg-blue-500/20 text-blue-300 border-blue-500/50";
+  if (tech.includes("TypeScript")) return "bg-sky-500/20 text-sky-300 border-sky-500/50";
+  if (tech.includes("RAG") || tech.includes("Semantic")) return "bg-purple-500/20 text-purple-300 border-purple-500/50";
+  if (tech.includes("Production")) return "bg-green-500/20 text-green-300 border-green-500/50";
+  return "bg-slate-700/50 text-slate-300 border-slate-600";
+};
+
+const getSectionContent = (id: string) => {
+  return projectData.sections.find(s => s.id === id)?.content || "";
+};
+const getSectionList = (id: string) => {
+  return projectData.sections.find(s => s.id === id)?.list || [];
+};
+---
+
+<Layout title={`${projectData.title}`} description={projectData.description}>
+  
+  <main class="relative bg-[#0b1121] min-h-screen text-slate-300 selection:bg-indigo-500/30 overflow-hidden">
+    
+    {/* --- Background Effects --- */}
+    <div class="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+    <div class="absolute top-0 -left-4 w-72 h-72 bg-indigo-600 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+    <div class="absolute top-0 -right-4 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+    <div class="absolute bottom-0 left-1/2 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-blob animation-delay-4000"></div>
+    <div class="fixed inset-0 z-0 pointer-events-none opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
+
+    {/* --- Content Area --- */}
+    <article class="relative z-10 container mx-auto px-4 md:px-0 py-20 max-w-4xl mt-15">
+      
+      {/* 1. Header Section */}
+      <header class="mb-12 animate-fade-in-down text-center">
+        {/* Live Badge */}
+        <div class="flex justify-center mb-4">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold bg-green-500/10 text-green-400 border border-green-500/30 tracking-wider uppercase">
+            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+            Production · chatbot.lks.ac.th
+          </span>
+        </div>
+
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
+          {projectData.title}
+        </h1>
+        <p class="text-xl text-slate-400 mb-8 font-light">
+          {projectData.subtitle}
+        </p>
+        
+        {/* Tech Stack Tags */}
+        <div class="flex flex-wrap justify-center gap-3 mb-8">
+          {projectData.tags.map((tag) => (
+            <span class={`px-3 py-1 rounded-full text-sm border ${getBadgeColor(tag)}`}>
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* Action Buttons */}
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href={projectData.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-semibold hover:from-indigo-500 hover:to-blue-500 transition-all duration-300 shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 hover:-translate-y-0.5"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            Live Demo
+          </a>
+          <a
+            href={projectData.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-800 text-slate-200 font-semibold hover:bg-slate-700 transition-all duration-300 border border-slate-700 hover:border-slate-600 hover:-translate-y-0.5"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </header>
+
+      {/* 2. Overview & Images */}
+      <section class="mb-16 reveal-on-scroll space-y-8">
+        <h2 class="text-3xl font-bold text-white border-b border-indigo-500/20 pb-2 mb-6">
+          {translations[currentLocale]["detail.overview"]}
+        </h2>
+        <p class="text-lg leading-relaxed text-slate-300">
+          {projectData.description}
+        </p>
+
+        {/* Background & Intro */}
+        <div class="bg-slate-800/40 border border-slate-700/50 rounded-xl p-6 backdrop-blur-sm">
+          <h3 class="text-lg font-semibold text-indigo-300 mb-3 flex items-center gap-2">
+            <span class="text-indigo-400">💡</span>
+            {currentLocale === "th" ? "ที่มาและความสำคัญ" : "Background & Importance"}
+          </h3>
+          <p class="text-slate-300 leading-relaxed">{getSectionContent('intro')}</p>
+        </div>
+
+        {/* Gallery */}
+        <div class="columns-1 md:columns-2 gap-6 mt-8 space-y-6">
+           {localGallery.map((image, index) => (
+              <div class="break-inside-avoid flex flex-col rounded-xl bg-slate-800/50 border border-slate-700 overflow-hidden group hover:border-indigo-500/50 transition-colors shadow-lg">
+                  <div class="relative overflow-hidden w-full h-auto bg-slate-900/50">
+                      <img 
+                        src={image.src}
+                        alt={image.alt}
+                        class="zoomable-image w-full h-auto object-cover cursor-zoom-in group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                  </div>
+                  <div class="p-4 bg-[#0f172a] border-t border-slate-700/50">
+                    <span class="text-sm font-mono text-center block text-indigo-300/90">
+                        {image.caption}
+                    </span>
+                  </div>
+              </div>
+           ))}
+        </div>
+      </section>
+
+      {/* 3. Architecture & Logic */}
+      <section class="mb-16 reveal-on-scroll">
+         <h2 class="text-3xl font-bold text-white border-b border-purple-500/20 pb-2 mb-6">
+           {translations[currentLocale]["detail.architecture"]}
+         </h2>
+         
+         <p class="mb-8 text-slate-300">
+           {getSectionContent('architecture')}
+         </p>
+
+         {/* Code Block: RAG System */}
+         <div class="mb-8">
+            <h3 class="text-xl font-semibold text-white mb-3 flex items-center gap-2">
+              <span class="text-indigo-400">#</span> RAG Pipeline (Retrieval-Augmented Generation)
+            </h3>
+            <div class="mockup-code bg-[#1e293b] text-sm rounded-lg overflow-hidden border border-slate-700 shadow-lg">
+               <div class="flex items-center px-4 py-2 bg-slate-800 border-b border-slate-700">
+                  <div class="flex gap-2">
+                     <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                     <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                     <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                  </div>
+                  <span class="ml-4 text-xs text-slate-400">lib/ai/rag.ts</span>
+               </div>
+               <div class="p-4 overflow-x-auto">
+                 <pre class="text-blue-300"><code>{projectData.codeSnippets.ragSystem}</code></pre>
+               </div>
+            </div>
+         </div>
+
+         {/* Code Block: Token Rate Limiting */}
+         <div class="mb-8">
+            <h3 class="text-xl font-semibold text-white mb-3 flex items-center gap-2">
+              <span class="text-green-400">#</span> Token Rate Limiting
+            </h3>
+            <div class="mockup-code bg-[#1e293b] text-sm rounded-lg overflow-hidden border border-slate-700 shadow-lg">
+               <div class="flex items-center px-4 py-2 bg-slate-800 border-b border-slate-700">
+                  <span class="text-xs text-slate-400">lib/rateLimit.ts</span>
+               </div>
+               <div class="p-4 overflow-x-auto">
+                 <pre class="text-green-300"><code>{projectData.codeSnippets.tokenRateLimit}</code></pre>
+               </div>
+            </div>
+         </div>
+
+         {/* Code Block: Semantic Search */}
+         <div class="mb-8">
+            <h3 class="text-xl font-semibold text-white mb-3 flex items-center gap-2">
+              <span class="text-purple-400">#</span> Semantic Search (Similar Faculty)
+            </h3>
+            <div class="mockup-code bg-[#1e293b] text-sm rounded-lg overflow-hidden border border-slate-700 shadow-lg">
+               <div class="flex items-center px-4 py-2 bg-slate-800 border-b border-slate-700">
+                  <span class="text-xs text-slate-400">lib/search/semantic.ts</span>
+               </div>
+               <div class="p-4 overflow-x-auto">
+                 <pre class="text-pink-300"><code>{projectData.codeSnippets.semanticSearch}</code></pre>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      {/* 4. Key Features */}
+      <section class="mb-16 reveal-on-scroll">
+        <h2 class="text-3xl font-bold text-white border-b border-blue-500/20 pb-2 mb-8">
+          {currentLocale === "th" ? "ฟีเจอร์หลัก" : "Key Features"}
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {getSectionList('features').map((feature, index) => {
+            const icons = ["🤖", "📚", "🔍", "📊", "🔒", "📱"];
+            return (
+              <div class="flex items-start gap-3 p-4 rounded-xl bg-slate-800/40 border border-slate-700/50 hover:border-indigo-500/40 transition-colors group">
+                <span class="text-2xl flex-shrink-0">{icons[index % icons.length]}</span>
+                <p class="text-slate-300 text-sm leading-relaxed group-hover:text-slate-200 transition-colors">{feature}</p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 5. Conclusion */}
+      <section class="reveal-on-scroll text-center py-10 border-t border-slate-800">
+        <div class="mb-8">
+          <a
+            href={projectData.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-bold text-lg hover:from-indigo-500 hover:to-blue-500 transition-all duration-300 shadow-lg shadow-indigo-500/20 hover:shadow-xl hover:shadow-indigo-500/40 hover:-translate-y-1"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+            {currentLocale === "th" ? "ลองใช้งาน Live →" : "Try Live Demo →"}
+          </a>
+        </div>
+        <a href={currentLocale === "th" ? "/th" : "/"} class="inline-block mt-4 px-6 py-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-white transition-all duration-300 border border-slate-700">
+          {translations[currentLocale]["detail.back"]}
+        </a>
+      </section>
+
+    </article>
+
+    {/* Lightbox Modal */}
+    <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/90 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+      <button id="closeModal" class="absolute top-5 right-5 text-white/70 hover:text-white transition-colors z-50 p-2 bg-black/50 rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+      </button>
+      <img id="expandedImg" src="" alt="Expanded View" class="max-w-[95%] max-h-[90vh] object-contain rounded-lg shadow-2xl border border-slate-700/50 transform scale-95 transition-transform duration-300">
+    </div>
+    
+  </main>
+</Layout>
+
+<style>
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+  }
+
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translate3d(0, -20px, 0); }
+    to { opacity: 1; transform: translate3d(0, 0, 0); }
+  }
+  .animate-fade-in-down {
+    animation: fadeInDown 0.8s ease-out;
+  }
+
+  pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+</style>
+
+<script>
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal-on-scroll').forEach((section) => {
+    observer.observe(section);
+  });
+
+  // Lightbox Script
+  const modal = document.getElementById('imageModal');
+  const expandedImg = document.getElementById('expandedImg') as HTMLImageElement;
+  const closeBtn = document.getElementById('closeModal');
+  const zoomableImages = document.querySelectorAll('.zoomable-image');
+
+  zoomableImages.forEach(img => {
+      img.addEventListener('click', (e) => {
+          const target = e.target as HTMLImageElement;
+          expandedImg.src = target.src;
+          
+          if (modal) {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                if(expandedImg) {
+                  expandedImg.classList.remove('scale-95');
+                  expandedImg.classList.add('scale-100');
+                }
+            }, 10);
+          }
+      });
+  });
+
+  const closeModal = () => {
+      if (modal) {
+        modal.classList.add('opacity-0');
+        if(expandedImg) {
+          expandedImg.classList.remove('scale-100');
+          expandedImg.classList.add('scale-95');
+        }
+        setTimeout(() => {
+            modal.classList.add('hidden');
+        }, 300);
+      }
+  };
+
+  if(closeBtn) closeBtn.addEventListener('click', closeModal);
+  if(modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+  }
+</script>
