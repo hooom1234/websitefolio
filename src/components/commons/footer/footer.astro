@@ -15,17 +15,17 @@ const links = [
 <footer class="relative bg-[#050505] text-white pt-16 pb-10 overflow-hidden">
   
   <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#7836cf] to-transparent opacity-70"></div>
-  <div class="absolute bottom-[-100px] left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-[#69c7c7]/5 blur-[120px] rounded-full pointer-events-none"></div>
+  <div class="absolute bottom-[-100px] left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-brand-cyan/5 blur-[120px] rounded-full pointer-events-none"></div>
 
   <div class="container mx-auto px-6 relative z-10">
     
     <div class="flex flex-col lg:flex-row items-center justify-between gap-10 mb-12">
       
       <a href={getRelativeLocaleUrl(currentLocale, "/")} class="group text-center lg:text-left">
-        <h3 class="text-4xl font-extrabold text-[#69c7c7] drop-shadow-[0_0_15px_rgba(105,199,199,0.2)] transition-transform duration-300 group-hover:scale-105">
+        <h3 class="text-4xl font-extrabold text-brand-cyan drop-shadow-[0_0_15px_rgba(105,199,199,0.2)] transition-transform duration-300 group-hover:scale-105">
           {translations[currentLocale]["nav.portfolio"]}
         </h3>
-        <span class="text-[10px] tracking-[0.3em] text-gray-500 group-hover:text-[#7836cf] transition-colors duration-300">
+        <span class="text-[10px] tracking-[0.3em] text-gray-500 group-hover:text-brand-purple transition-colors duration-300">
           TAWAN PINGMA
         </span>
       </a>
@@ -36,17 +36,17 @@ const links = [
             <li>
               <a 
                 href={link.href} 
-                class="relative hover:text-[#69c7c7] transition-colors duration-300 py-1 group/link"
+                class="relative hover:text-brand-cyan transition-colors duration-300 py-1 group/link"
               >
                 {link.name}
-                <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-[#69c7c7] transition-all duration-300 group-hover/link:w-full"></span>
+                <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-brand-cyan transition-all duration-300 group-hover/link:w-full"></span>
               </a>
             </li>
           ))}
         </ul>
       </nav>
 
-      <div class="bg-gray-900/40 p-3 rounded-full border border-white/5 backdrop-blur-sm hover:border-[#7836cf]/40 transition-colors duration-300">
+      <div class="bg-gray-900/40 p-3 rounded-full border border-white/5 backdrop-blur-sm hover:border-brand-purple/40 transition-colors duration-300">
         <SocialIcons client:visible />
       </div>
     </div>
@@ -66,9 +66,9 @@ const links = [
 
       <a 
         href="mailto:tawunpingma21@gmail.com" 
-        class="group flex items-center gap-3 px-5 py-2 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-[#69c7c7]/30 transition-all duration-300"
+        class="group flex items-center gap-3 px-5 py-2 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-brand-cyan/30 transition-all duration-300"
       >
-        <span class="text-sm text-gray-400 group-hover:text-[#69c7c7] transition-colors">
+        <span class="text-sm text-gray-400 group-hover:text-brand-cyan transition-colors">
           tawunpingma21@gmail.com
         </span>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-600 group-hover:text-white transition-colors">

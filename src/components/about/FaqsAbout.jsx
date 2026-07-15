@@ -62,21 +62,21 @@ const SkillsList = () => {
     <div className="flex flex-col items-center text-left mx-auto max-w-6xl px-4">
       <div className="site-container mt-10">
         <h2 class="text-4xl font-bold flex flex-col items-center gap-6 text-center whitespace-nowrap text-white md:flex-row md:items-center md:text-end">
-          <span class="hidden h-1.5 grow rounded-lg drop-shadow-[2px_2px_0_#0debd8] bg-[#7836cf] md:block"></span>
-          <span class="drop-shadow-[2px_2px_0_#7836cf]">Mas Sobre Mi</span>
+          <span class="hidden h-1.5 grow rounded-lg drop-shadow-[2px_2px_0_#0debd8] bg-brand-purple md:block"></span>
+          <span class="drop-shadow-[2px_2px_0_var(--color-brand-purple)]">Mas Sobre Mi</span>
         </h2>
         <ul className="mt-4 space-y-4 text-lg">
           {Object.entries(skills).map(([category, items]) => (
             <li key={category} className="w-full">
               <div
                 onClick={() => toggleItem(category)}
-                className="bg-gray-900 hover:bg-opacity-80 w-full cursor-pointer overflow-hidden rounded-2xl text-left transition-all drop-shadow-[2px_2px_0_#7836cf]"
+                className="bg-gray-900 hover:bg-opacity-80 w-full cursor-pointer overflow-hidden rounded-2xl text-left transition-all drop-shadow-[2px_2px_0_var(--color-brand-purple)]"
               >
                 <div className="flex items-center gap-3 p-4">
                   {CategoryIcons[category]}
                   <div className="flex grow items-center justify-between gap-2">
                     <div className="max-w-[200px] min-w-0 overflow-hidden md:max-w-none">
-                      <span className="block truncate text-lg text-white drop-shadow-[1px_1px_0_#7836cf] font-bold">
+                      <span className="block truncate text-lg text-white drop-shadow-[1px_1px_0_var(--color-brand-purple)] font-bold">
                         {category}
                       </span>
                     </div>

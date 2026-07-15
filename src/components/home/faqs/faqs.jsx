@@ -61,10 +61,10 @@ const SkillsList = () => {
   return (
     <div className="flex flex-col items-center px-4 text-left">
       <div className="mx-auto w-full max-w-4xl">
-        <h2 className="text-white text-center text-4xl font-bold drop-shadow-[2px_2px_0_#7836cf]">
+        <h2 className="text-white text-center text-4xl font-bold drop-shadow-[2px_2px_0_var(--color-brand-purple)]">
           Sobre mí y mi trabajo
         </h2>
-        <ul className="mt-8 space-y-4 text-lg drop-shadow-[2px_2px_0_#7836cf]">
+        <ul className="mt-8 space-y-4 text-lg drop-shadow-[2px_2px_0_var(--color-brand-purple)]">
           {Object.entries(skills).map(([category, items]) => (
             <li key={category} className="w-full">
               <div
@@ -75,7 +75,7 @@ const SkillsList = () => {
                   {CategoryIcons[category]}
                   <div className="flex grow items-center justify-between gap-2">
                     <div className="max-w-[200px] min-w-0 overflow-hidden md:max-w-none">
-                      <span className="block truncate text-lg text-white drop-shadow-[1px_1px_0_#7836cf] font-bold">
+                      <span className="block truncate text-lg text-white drop-shadow-[1px_1px_0_var(--color-brand-purple)] font-bold">
                         {category}
                       </span>
                     </div>

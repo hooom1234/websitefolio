@@ -53,7 +53,7 @@ export const translations = {
     // About Page General
     "about.title": "About Me - Tawan Pingma",
     "about.description": "Learn more about my skills, experience, and journey as a developer.",
-    "about.me.intro": "My name is <span class=\"inline-block text-[#69c7c7] filter drop-shadow-sm hover:scale-105 transition-transform origin-left duration-300\">Tawan</span>",
+    "about.me.intro": "My name is <span class=\"inline-block text-brand-cyan filter drop-shadow-sm hover:scale-105 transition-transform origin-left duration-300\">Tawan</span>",
     "about.me.p1": "I am studying <span class=\"text-sky-400 font-medium\">Telecommunications Engineering</span> at <span class=\"text-sky-400 font-medium\">KMITL (สจล)</span>, with a strong interest in <span class=\"text-white font-medium\">Cybersecurity</span> and <span class=\"text-white font-medium\">Networking</span>.",
     "about.me.p2": "Currently, I am exploring pathways towards career roles such as a <span class=\"text-sky-400 font-medium\">Blue Teamer</span> or a <span class=\"text-sky-400 font-medium\">Network Engineer</span>.",
     "about.me.p3": "I enjoy building things with:",
@@ -134,7 +134,7 @@ export const translations = {
     // About Page General
     "about.title": "เกี่ยวกับผม - ตะวัน พิงมะ",
     "about.description": "เรียนรู้เพิ่มเติมเกี่ยวกับทักษะ ประสบการณ์ และการเดินทางของผมในฐานะนักพัฒนา",
-    "about.me.intro": "ผมชื่อ <span class=\"inline-block text-[#69c7c7] filter drop-shadow-sm hover:scale-105 transition-transform origin-left duration-300\">ตะวัน</span>",
+    "about.me.intro": "ผมชื่อ <span class=\"inline-block text-brand-cyan filter drop-shadow-sm hover:scale-105 transition-transform origin-left duration-300\">ตะวัน</span>",
     "about.me.p1": "ผมกำลังศึกษาอยู่ที่สาขา <span class=\"text-sky-400 font-medium\">วิศวกรรมโทรคมนาคม</span> ที่ <span class=\"text-sky-400 font-medium\">สจล. (KMITL)</span> โดยมีความสนใจอย่างมากในด้าน <span class=\"text-white font-medium\">ความปลอดภัยไซเบอร์ (Cybersecurity)</span> และ <span class=\"text-white font-medium\">ระบบเครือข่าย (Networking)</span>",
     "about.me.p2": "ปัจจุบันผมกำลังค้นหาเส้นทางสู่อาชีพ เช่น <span class=\"text-sky-400 font-medium\">Blue Teamer</span> หรือ <span class=\"text-sky-400 font-medium\">วิศวกรเครือข่าย (Network Engineer)</span>",
     "about.me.p3": "ผมสนุกกับการสร้างสิ่งต่าง ๆ ด้วย:",

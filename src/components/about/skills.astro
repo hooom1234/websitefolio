@@ -66,7 +66,7 @@ const skillCategories = [
   <div class="mb-20 flex flex-col items-center text-center">
     <h2 class="text-4xl md:text-5xl font-bold text-white inline-flex flex-col items-center gap-2">
       <span class="relative z-10">{translations[currentLocale]["skills.title"]}</span>
-      <span class="h-1.5 w-24 rounded-full bg-gradient-to-r from-[#7836cf] to-[#0debd8] shadow-[0_0_15px_#7836cf]"></span>
+      <span class="h-1.5 w-24 rounded-full bg-gradient-to-r from-[#7836cf] to-[#0debd8] shadow-[0_0_15px_var(--color-brand-purple)]"></span>
     </h2>
     <p class="mt-6 text-zinc-400 max-w-lg text-lg leading-relaxed">
       {translations[currentLocale]["skills.subtitle"]}
@@ -90,7 +90,7 @@ const skillCategories = [
               
               <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-[#7836cf] to-[#0debd8] opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-30"></div>
 
-              <div class="relative flex flex-col items-center justify-center gap-4 rounded-xl border border-zinc-800 bg-[#0a0a0a] p-6 transition-all duration-300 hover:-translate-y-2 hover:border-[#7836cf]/50 h-full shadow-lg">
+              <div class="relative flex flex-col items-center justify-center gap-4 rounded-xl border border-zinc-800 bg-[#0a0a0a] p-6 transition-all duration-300 hover:-translate-y-2 hover:border-brand-purple/50 h-full shadow-lg">
                 
                 <div class={`h-14 w-14 transition-transform duration-300 group-hover:scale-110 flex items-center justify-center ${skill.bg || ''}`}>
                   <img
