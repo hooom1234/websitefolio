@@ -14,7 +14,7 @@ const currentLocale = Astro.currentLocale || "en";
 <html lang={currentLocale} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     
@@ -45,8 +45,6 @@ const currentLocale = Astro.currentLocale || "en";
 
     <Footer />
     
-  <!-- impeccable-live-start -->
-  <script is:inline src="http://localhost:8400/live.js"></script>
-  <!-- impeccable-live-end -->
+
   </body>
 </html>

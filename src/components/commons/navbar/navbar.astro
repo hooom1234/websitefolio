@@ -148,11 +148,11 @@ const links = [
         
         const currentScrollY = window.scrollY;
         
-        // ถ้าเลื่อนลงเยอะๆ ให้ซ่อน
+        // ถ้าเลื่อนลงเยอะๆ ให้ซ่อน (preserve -translate-x-1/2 centering)
         if (currentScrollY > lastScrollY && currentScrollY > 50) {
-            navbar.style.transform = "translate(0, -200%)";
+            navbar.style.transform = "translateX(-50%) translateY(-200%)";
         } else {
-            navbar.style.transform = "translate(0, 0)";
+            navbar.style.transform = "translateX(-50%) translateY(0)";
         }
         
         lastScrollY = currentScrollY;

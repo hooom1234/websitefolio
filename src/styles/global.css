@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* Prevent horizontal scroll on mobile */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 .primary {
   color: #7836cf;
 }
